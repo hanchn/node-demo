@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="name" name="" value="" type="text" placeholder="用户名" />
+    <input class="pass" name="" value="" type="text" placeholder="密码" />
+    <button class="reg">注册</button>
+</body>
+</html>
+<script>
+window.onload = () => {
+    const ajax = ({method = 'GET', params = {}, url = ''}) => {
+       const xmlHttp = new window.XMLHttpRequest()
+        xmlHttp.onreadystatechange = () => {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+               console.log('success !')
+            }
+        }
+        console.log('params ', params)
+        xmlHttp.open(method, url ,true)
+        xmlHttp.send(JSON.stringify(params))      
+    }
+
+    const clickEvent = () => ajax({
+        method: 'POST',
+        params: {
+          name: document.querySelector('.name').value,
+          pass: document.querySelector('.pass').value,
+          avator: '',
+          moment: new Date()
+        }
+    })
+
+    document.querySelector('.reg').onclick = clickEvent
+}
+</script>

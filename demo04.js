@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'development'
 http.createServer((req, res) => {
     const { url, method } = req
     if(url === '/favicon.ico') return
-    res.end(fs.readFileSync('./index.html'))
+    res.end(fs.readFileSync('./test.html'))
 }).listen(port, () => {
     console.log(`${url.split('/').pop()} server start on port ${port} env:`, process.env.NODE_ENV)
 })
