@@ -49,6 +49,7 @@ createTable(schema.CREATE_USER_TABLE)
 
 // 注册用户
 const insertData = ( value ) => {
+  console.log('value ', value)
   let _sql = "insert into users set name=?,pass=?,avator=?,moment=?;"
   return query( _sql, value )
 }
@@ -75,7 +76,7 @@ http.createServer((req, res) => {
     if(method === 'POST'){
       req.on('data', (chuck) => {
         const { name, pass, avator, moment} = JSON.parse(new Buffer(chuck).toString())
-        insertData(name, pass, avator, moment)
+        insertData([name, pass, avator, moment])
       })    
     }
   } else if(url === '/show') {
